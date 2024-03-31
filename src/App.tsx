@@ -9,6 +9,7 @@ import MyRecipes from './views/MyRecipes';
 import MealPlan from './views/MealPlan';
 import Profile from './views/Profile';
 import Login from './views/Login';
+import RecipePage from './views/RecipePage';
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,8 @@ const App: React.FC = () => {
                 {/* Navigation routes */}
                 <Route path="/"  Component={Home} />
                 <Route path="/search-recipes"  Component={RecipeSearch} />
+                <Route path="/categories/:category"  Component={RecipeSearch} />
+                <Route path="/categories/:category/:recipe" element={<RecipePage/>} />
                 <Route path="/myrecipes"  Component={MyRecipes} />
                 <Route path="/mealplan"  Component={MealPlan} />
 
