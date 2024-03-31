@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import { getRecipe } from '../services/recipe'; // Import getRecipe
-import Recipe, { IRecipe } from '../components/Recipe'
+import Recipe, { IRecipe } from '../components/Recipe/Recipe'
 
 const RecipePage = () => {
     const params = useParams<{ recipe: string }>();

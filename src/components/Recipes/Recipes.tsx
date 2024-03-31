@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Mealservice from '../../services/meals'
 import MyRecipesservice from '../../services/myrecipes'
 import RecipeCard from '../RecipeCard/RecipeCard'
-import { IRecipe } from '../Recipe';
+import { IRecipe } from '../Recipe/Recipe';
 import './Recipes.scss';
 
 interface RecipesProps {

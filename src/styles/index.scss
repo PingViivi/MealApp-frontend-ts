@@ -14,8 +14,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-synthesis: none;
-  
   // color-scheme: light dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 body {
@@ -23,7 +28,6 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  box-sizing: border-box;
 }
 
 a, button {
