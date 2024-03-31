@@ -1,10 +1,10 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import Banner from '../components/Banner'
-import Category, { ICategory } from '../components/Category'
+import Category, { ICategory } from '../components/Category/Category'
 import CategoriesService from '../services/categories'
 import { useParams } from 'react-router-dom'
-import Recipes from '../components/Recipes'
+import Recipes from '../components/Recipes/Recipes'
 
 
 const RecipeSearch: React.FC = () => {
@@ -20,7 +20,7 @@ const RecipeSearch: React.FC = () => {
       });
   }, []);
 
-  const params = useParams();
+  const category = useParams().category
 
   return (
     <>
@@ -28,20 +28,20 @@ const RecipeSearch: React.FC = () => {
             title='Find new recipes'
             desc='Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.'
         >
-            <input type="search" name="search" id="" />
+            {/* <input type="search" name="search" id="" /> */}
         </Banner>
 
       <section className='Categories'>
         <nav>
           <ul>
             {categories?.map((category) => (
-              <Category current={false} strCategory={category.strCategory} idCategory={category.idCategory} />
+              <Category strCategory={category.strCategory} idCategory={category.idCategory} />
             ))}
           </ul>
         </nav>
       </section>
       
-      {Object.keys(params).length ? <Recipes category={params.category}/> : null}
+      {category ? <Recipes category={category}/> : null}
     </>
   )
 }

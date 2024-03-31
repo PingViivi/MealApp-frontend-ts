@@ -1,21 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import '../Category/Category.scss';
 
 export interface ICategory {
   idCategory: string;
   strCategory: string;
-  current: boolean;
   // Define other properties of the category if needed
 }
 
 const Category: React.FC<ICategory> = ({ strCategory }) => {
+  const category = useParams().category
+  
   return (
-    <li>
-      <Link className='category-item' to={`/categories/${strCategory}`}>
+    <li className='Category'>
+      <Link className={'link-item ' + (category === strCategory ? 'current' : '')} to={`/categories/${strCategory}`}>
         {strCategory}
       </Link>
     </li>
   );
+  
 };
 
 export default Category;

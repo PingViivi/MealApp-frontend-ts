@@ -1,0 +1,12 @@
+.Category {
+
+    a.link-item {
+        color: var(--black-light);
+        padding: 2px 8px;
+        border-radius: 5px;
+        &.current {
+            background-color: var(--black-light);
+            color: var(--white);
+        }
+    }
+}
