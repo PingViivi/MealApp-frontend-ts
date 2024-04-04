@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IRecipe } from '../components/Recipe/Recipe';
 
 const baseUrl = 'http://localhost:3001/api/categories/';
 
@@ -24,15 +25,11 @@ const formatRecipeList = (apiRecipeData: any, category?:string) => {
     return recipe;
 };
 
-const saveRecipe = async (mealName:string) => {
+const saveRecipe = async (recipe:IRecipe) => {
     const mealUrl = 'http://localhost:3001/db/myrecipes'; 
-    
     try {
-        alert('submitted')
-        await axios.post(mealUrl, { 
-            mealName 
-        });
-        
+        await axios.post(mealUrl, recipe);
+        alert('Recipe saved')
     } catch (error) {
         throw new Error('Failed to save recipe frontendside');
     }

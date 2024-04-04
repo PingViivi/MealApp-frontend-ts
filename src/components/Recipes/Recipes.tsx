@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import Mealservice from '../../services/meals'
-import MyRecipesservice from '../../services/myrecipes'
+import Recipesservice from '../../services/recipe'
 import RecipeCard from '../RecipeCard/RecipeCard'
 import { IRecipe } from '../Recipe/Recipe';
 import './Recipes.scss';
@@ -26,24 +26,11 @@ const Recipes: React.FC<RecipesProps> = ({ category }) => {
 
     // Log the updated meals whenever it changes
     useEffect(() => {
-        console.log('Updated meals:', meals);
+        // console.log('Updated meals:', meals);
     }, [meals]);
 
-    const likeHandler = async (id: string) => {
-        const meal = meals.find(meal => meal.id === id);
-        if (!meal) return; // Ensure meal is not undefined
-        try {
-            let foundRecipes = await MyRecipesservice.findRecipeByName(meal.name);
-            if (foundRecipes) {
-                console.error(meal.name, 'recipe already in db');
-                // Here it should delete it from the database
-            } else {
-                await Mealservice.saveRecipe(meal.name);
-                console.log('Recipe saved');
-            }
-        } catch (error) {
-            console.error('Error while finding recipe:', error);
-        } 
+    const likeHandler = async (recipeId: string) => {
+        Recipesservice.likeRecipeHandler(recipeId)
     };
     
 const count = meals.length
@@ -58,7 +45,7 @@ const count = meals.length
                 <div className="flex recipe-list">
                     {
                         meals?.map((meal) => (
-                            <RecipeCard isLiked={like} like={() => likeHandler(meal.id)} category={category} meal={meal} key={meal.id}/>
+                            <RecipeCard path={`/categories/${category}`} isLiked={like} like={() => likeHandler(meal.id)} category={category} meal={meal} key={meal.id}/>
                             // <RecipeCard like={likeHandler} category={category} meal={meal} key={meal.idMeal}/>
                         ))
                     }  

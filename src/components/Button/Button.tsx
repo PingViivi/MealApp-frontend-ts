@@ -1,4 +1,5 @@
 import React from 'react';
+import './Button.scss';
 
 // Define icons here
 // const icons = {
@@ -28,7 +29,6 @@ export type IButtonStyle =
 
 // Define the props for the Button component
 export interface IButton {
-  rounded?: boolean;
   onClick?: (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void | any;
   iconBefore?: JSX.Element;
   iconAfter?: JSX.Element;
@@ -36,9 +36,7 @@ export interface IButton {
   disabled?: boolean;
   compact?: boolean;
   style?: IButtonStyle;
-  // icon?: IButtonIcon;
   fullWidth?: boolean;
-  dataCy?: string;
 }
 
 const Button: React.FC<IButton> = (props) => {
@@ -52,13 +50,12 @@ const Button: React.FC<IButton> = (props) => {
     <button
       onClick={handleClick}
       disabled={props.disabled}
-      className={props.style}
-      style={{ borderRadius: props.rounded ? '20px' : '5px', width: props.fullWidth ? '100%' : 'auto' }}
-      data-cy={props.dataCy}
+      className={'button ' + props.style}
+      style={{ width: props.fullWidth ? '100%' : 'auto' }}
     >
-      {props.iconBefore && <span>{props.iconBefore}</span>}
+      {props.iconBefore && <span className='icon before'>{props.iconBefore}</span>}
       {props.children}
-      {props.iconAfter && <span>{props.iconAfter}</span>}
+      {props.iconAfter && <span className='icon after'>{props.iconAfter}</span>}
     </button>
   );
 };

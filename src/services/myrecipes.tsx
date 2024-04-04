@@ -1,6 +1,6 @@
-import axios from 'axios';
-
-const baseUrl = 'http://localhost:3001/db/myrecipes/';
+import axios from 'axios'
+const baseUrl = 'http://localhost:3001/db/myrecipes/' 
+import { IRecipe } from '../components/Recipe/Recipe';
 
 const getMyRecipes = async () => {
     try {
@@ -11,17 +11,22 @@ const getMyRecipes = async () => {
     }
 };
 
-const findRecipeByName = async (recipeName: string) => {
+const findRecipeByName = async (recipeName:string) => {
     try {
         const recipes = await getMyRecipes(); // Retrieve all recipes
-        const foundRecipes = recipes.filter(recipe => recipe.name === recipeName); // Filter recipes by name
-        return foundRecipes.length !== 0; // Return true if foundRecipes is not empty, otherwise false
+        const foundRecipes = recipes.filter((recipe: IRecipe) => recipe.name === recipeName); // Filter recipes by name
+        if (foundRecipes.length === 0) {
+            return false;
+        } else {
+            return true
+        }
     } catch (error) {
         throw new Error('Failed to fetch recipe by name');
     }
 };
 
-export default {
-    getMyRecipes: getMyRecipes,
-    findRecipeByName: findRecipeByName,
-};
+
+export default { 
+    getMyRecipes: getMyRecipes, 
+    findRecipeByName: findRecipeByName, 
+}

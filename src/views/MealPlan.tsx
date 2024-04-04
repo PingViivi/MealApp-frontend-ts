@@ -1,6 +1,7 @@
 import React from 'react'
 import Banner from '../components/Banner'
-import Button from '../components/Button'
+import Button from '../components/Button/Button'
+import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 
 const MealPlan = () => {
   return (
@@ -9,7 +10,8 @@ const MealPlan = () => {
             title='Generate MealPlan'
             desc='Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.'
         >
-            <Button>Generate</Button>
+          <br />
+            <Button iconAfter={<RefreshRoundedIcon/>}>Generate</Button>
         </Banner>
     </>
   )

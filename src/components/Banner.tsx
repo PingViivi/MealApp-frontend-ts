@@ -22,7 +22,7 @@ const Banner = (props: IBanner) => {
 
 const BannerStyles = {
   marginTop: '50px',
-  marginBottom: '100px',
+  marginBottom: '50px',
 }
 const HeaderStyles = {
   marginBottom: '20px',

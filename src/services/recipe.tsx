@@ -1,12 +1,33 @@
 import axios from 'axios';
+import { IRecipe } from '../components/Recipe/Recipe';
+import MyRecipesservice from './myrecipes';
+import Mealservice from './meals';
 
-const apiRecipe = async (meal: string) => {
-    const baseUrl = 'http://localhost:3001/api/meals/' + meal;
-    const response = await axios.get(baseUrl);
-    return response.data.recipe[0];
+const getApiRecipe = async (meal: string) => {
+    try {
+        const baseUrl = 'http://localhost:3001/api/meals/' + meal;
+        const response = await axios.get(baseUrl);
+        const apiRecipeData = response.data.recipe[0];
+        return formatRecipe(apiRecipeData);
+    } catch (error) {
+        throw new Error('Failed to fetch API recipe');
+    }
+};
+
+const getDbRecipe = async (meal: string) => {
+    try {
+        const baseUrl = 'http://localhost:3001/db/myrecipes/' + meal;
+        const response = await axios.get(baseUrl);
+        console.log(response.data)
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch database recipe');
+    }
 };
 
 const formatRecipe = (apiRecipeData: any) => {
+    const instructionsArray = apiRecipeData.strInstructions.split(/\n|\./g).filter((instruction:string) => instruction.trim() !== '');
+
     const recipe = {
         "@context": "https://schema.org",
         "@type": "Recipe",
@@ -19,16 +40,17 @@ const formatRecipe = (apiRecipeData: any) => {
         "description": "", // You can add a description if available in the API response
         "image": apiRecipeData.strMealThumb,
         "recipeIngredient": [],
-        "recipeInstructions": apiRecipeData.strInstructions,
+        "liked": false,
+        "recipeInstructions": instructionsArray,
         "recipeYield": "1 serving" // You can adjust this based on the recipe
     };
 
     // Add ingredients
     for (let i = 1; i <= 20; i++) {
-        const ingredient = apiRecipeData['strIngredient' + i];
-        const measure = apiRecipeData['strMeasure' + i];
+        const measure: any = apiRecipeData['strMeasure' + i];
+        const ingredient: any = apiRecipeData['strIngredient' + i];
         if (ingredient && measure) {
-            recipe.recipeIngredient.push(`${measure.trim()} ${ingredient.trim()}`);
+            recipe.recipeIngredient.push(`${measure.trim()} ${(ingredient).trim()}`);
         } else {
             break; // Stop looping if there are no more ingredients
         }
@@ -37,7 +59,28 @@ const formatRecipe = (apiRecipeData: any) => {
     return recipe;
 };
 
-export const getRecipe = async (meal: string) => {
-    const apiRecipeData = await apiRecipe(meal);
-    return formatRecipe(apiRecipeData);
+const likeRecipeHandler = async (recipeId: string) => {
+    if (!recipeId) return;
+
+    try {
+        const RecipeData = await getApiRecipe(recipeId)
+        const foundRecipes = await MyRecipesservice.findRecipeByName(RecipeData.name);
+        if (foundRecipes) {
+            console.error(RecipeData.name + ' recipe already in db');
+            alert(RecipeData.name + ' recipe already saved')
+            // Here it should delete it from the database
+        } else {
+            await Mealservice.saveRecipe(RecipeData);
+            console.log(RecipeData.name + ' recipe saved');
+        }
+    } catch (error) {
+        console.error('Error while finding recipe:', error);
+    } 
+    
+};
+
+export default { 
+    getApiRecipe, 
+    getDbRecipe,
+    likeRecipeHandler
 };

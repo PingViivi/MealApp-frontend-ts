@@ -1,0 +1,25 @@
+button.button {
+    display: inline-flex;
+    align-items: center;
+    border: 1.5px solid var(--green-dark);
+    margin-top: auto;
+    font-family: Itim, "Karla", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    padding: 6px 10px;
+    &:hover {
+        border-color: var(--green-medium);
+    }
+    span.icon {
+        display: flex;
+        &.before {
+            margin-right: 5px;
+        }
+        &.after {
+            margin-left: 5px;
+        }
+        svg {
+            height: 18px;
+            width: 18px;
+        }
+    }
+}

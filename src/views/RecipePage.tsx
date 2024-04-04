@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'
-import { getRecipe } from '../services/recipe'; // Import getRecipe
+import { useLocation, useParams } from 'react-router-dom'
+import RecipeSercive from '../services/recipe'; // Import getRecipe
 import Recipe, { IRecipe } from '../components/Recipe/Recipe'
 
 const RecipePage = () => {
     const params = useParams<{ recipe: string }>();
     const RecipeId = params.recipe ?? '';
     const [recipe, setRecipe] = useState<IRecipe | null>(null);
-
+    
+    // I should do here if path is myrecipes/id -> use db else use api
+    const location = useLocation();
+    console.log(location.pathname)
+    
+    
     useEffect(() => {
         const fetchRecipe = async () => {
             try {
-                const recipeData = await getRecipe(RecipeId); // Call getRecipe function
-                setRecipe(recipeData);
+                if (location.pathname.includes('/myrecipes/')) {
+                    let recipeData = await RecipeSercive.getDbRecipe(RecipeId); // Call getRecipe function
+                    setRecipe(recipeData);
+                } else {
+                    let recipeData = await RecipeSercive.getApiRecipe(RecipeId); // Call getRecipe function
+                    setRecipe(recipeData);
+                }
             } catch (error) {
                 console.error('Error fetching recipe:', error);
             }
