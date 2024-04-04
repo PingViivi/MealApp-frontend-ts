@@ -4,7 +4,7 @@ import '../src/styles/App.scss'
 
 import Home from './views/Home'
 import RecipeSearch from './views/RecipeSearch';
-import Navigation from './components/Navigation';
+import Navigation from './components/Navigation/Navigation';
 import MyRecipes from './views/MyRecipes';
 import MealPlan from './views/MealPlan';
 import Profile from './views/Profile';

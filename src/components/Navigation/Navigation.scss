@@ -1,0 +1,14 @@
+header.nav-container {
+    justify-content: space-between;
+    padding: 10px 0;
+    .logo-container {
+        width: 150px !important;
+        img.logo {
+            object-fit: contain;
+        }
+    }
+    nav {
+        display: flex;
+        justify-content: flex-end;
+    }
+}

@@ -18,7 +18,6 @@ const getDbRecipe = async (meal: string) => {
     try {
         const baseUrl = 'http://localhost:3001/db/myrecipes/' + meal;
         const response = await axios.get(baseUrl);
-        console.log(response.data)
         return response.data;
     } catch (error) {
         throw new Error('Failed to fetch database recipe');

@@ -1,6 +1,7 @@
 import axios from 'axios'
 const baseUrl = 'http://localhost:3001/db/myrecipes/' 
 import { IRecipe } from '../components/Recipe/Recipe';
+import Mealservice from './meals';
 
 const getMyRecipes = async () => {
     try {
@@ -25,8 +26,17 @@ const findRecipeByName = async (recipeName:string) => {
     }
 };
 
+const createNewRecipe = async (recipe:IRecipe) => {
+    try {
+        Mealservice.saveRecipe(recipe)
+    } catch (error) {
+        throw new Error('Failed to create new recipe');
+    }
+}
+
 
 export default { 
     getMyRecipes: getMyRecipes, 
     findRecipeByName: findRecipeByName, 
+    createNewRecipe: createNewRecipe,
 }

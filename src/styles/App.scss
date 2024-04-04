@@ -12,6 +12,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
+    &.column {
+        flex-direction: column;
+    }
     .flex-item {
         flex: 0 1 auto;
         box-sizing: border-box;

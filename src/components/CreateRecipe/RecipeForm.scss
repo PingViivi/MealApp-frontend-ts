@@ -1,0 +1,28 @@
+.RecipeForm {
+    align-items: flex-start;
+    
+    label {
+        width: 100%;
+        padding-bottom: 15px;
+        &:nth-child(odd) {
+            padding-right: 10px;
+        }
+        &:nth-child(even) {
+            padding-left: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 5px;
+            font-family: inherit;
+        }
+    }
+    .buttons {
+        justify-content: flex-end;
+        button {
+            margin-top: 10px;
+            &:first-child {
+                margin-right: 10px;
+            }
+        }
+    }
+}

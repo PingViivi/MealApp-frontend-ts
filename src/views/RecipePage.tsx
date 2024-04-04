@@ -7,11 +7,7 @@ const RecipePage = () => {
     const params = useParams<{ recipe: string }>();
     const RecipeId = params.recipe ?? '';
     const [recipe, setRecipe] = useState<IRecipe | null>(null);
-    
-    // I should do here if path is myrecipes/id -> use db else use api
     const location = useLocation();
-    console.log(location.pathname)
-    
     
     useEffect(() => {
         const fetchRecipe = async () => {

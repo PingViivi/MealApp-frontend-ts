@@ -37,6 +37,7 @@ export interface IButton {
   compact?: boolean;
   style?: IButtonStyle;
   fullWidth?: boolean;
+  type?: "submit" | "reset" | "button" | undefined;
 }
 
 const Button: React.FC<IButton> = (props) => {
@@ -48,6 +49,7 @@ const Button: React.FC<IButton> = (props) => {
 
   return (
     <button
+      type={props.type}
       onClick={handleClick}
       disabled={props.disabled}
       className={'button ' + props.style}
