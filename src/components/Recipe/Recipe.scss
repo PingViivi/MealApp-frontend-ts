@@ -43,6 +43,13 @@
                 margin-left: 5px;
             }
         }
+        @media (max-width: 600px) {
+            .info {
+                h1 {
+                    margin: 0;
+                }
+            }
+        }
     }
     .guide {
         margin-top: 50px;
@@ -93,6 +100,13 @@
                     flex: 1 1 0;
                 }
             }
+        }
+    }
+    @media (max-width: 600px) {
+        button.back {
+            position: absolute;
+            background-color: var(--white);
+            margin: 10px;
         }
     }
 }

@@ -36,6 +36,7 @@ export interface IButton {
   disabled?: boolean;
   compact?: boolean;
   style?: IButtonStyle;
+  class?: string;
   fullWidth?: boolean;
   type?: "submit" | "reset" | "button" | undefined;
 }
@@ -52,7 +53,7 @@ const Button: React.FC<IButton> = (props) => {
       type={props.type}
       onClick={handleClick}
       disabled={props.disabled}
-      className={'button ' + props.style}
+      className={'button ' + ' ' + props.style + ' ' + props.class}
       style={{ width: props.fullWidth ? '100%' : 'auto' }}
     >
       {props.iconBefore && <span className='icon before'>{props.iconBefore}</span>}

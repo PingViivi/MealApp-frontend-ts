@@ -11,6 +11,8 @@ import Mealservice from '../../services/meals'
 import MyRecipesservice from '../../services/myrecipes'
 import LikeButton from './LikeButton';
 import Recipesservice from '../../services/recipe'
+import Button from '../Button/Button';
+import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 export interface IRecipe {
     id: string;
     name: string;
@@ -67,7 +69,13 @@ const Recipe: React.FC<{ recipe: IRecipe }> = ({ recipe }) => {
     return (
         <>
         <section className="Recipe">
-            <button className='button' onClick={() => navigate(-1)}>Go Back</button>
+            <Button
+                onClick={() => navigate(-1)}
+                iconBefore={<KeyboardReturnRoundedIcon/>}
+                class={'back'}
+            >
+                Go Back
+            </Button>
             <div className="flex top-info">
                 <div className="flex-item six image">
                     <img src={recipe.image} alt={"Image of a " + recipe.name} />

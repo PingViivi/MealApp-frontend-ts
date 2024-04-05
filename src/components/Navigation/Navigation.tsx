@@ -10,15 +10,18 @@ import EditCalendarRoundedIcon from '@mui/icons-material/EditCalendarRounded';
 const Navigation: React.FC = () => {
   const location = useLocation().pathname
   
-  const currentPage = (url:string) => {
-    console.log(location)
-    console.log(url)
-    if (location === (url)) {
-      return true
+  const currentPage = (url: string) => {
+    const pathname = location;
+    
+    if (url === '/') {
+      return pathname === '/'; // Only return true if the pathname is exactly '/'
+    } else if (url === '/search-recipes' && (pathname.startsWith('/search-recipes') || pathname.startsWith('/categories'))) {
+      return true; // Search recipes page or categories page
     } else {
-      return false
+      return pathname.startsWith(url); // Any other page
     }
-  }
+  };
+
   return (
     <header className='nav-container flex'>
       <Link to="/" className="flex-item fifth image logo-container">

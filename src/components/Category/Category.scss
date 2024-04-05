@@ -1,12 +1,18 @@
 .Category {
 
     a.link-item {
-        color: var(--black-light);
         padding: 2px 8px;
         border-radius: 5px;
+        // color: var(--black-light);
+        // border: 1.5px solid var(--black-light);
+        color: #385755;
+        background-color: #B9CBCA;
+        font-family: "Josefin Slab", "Karla", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+        font-weight: 700;
+
         &.current {
-            background-color: var(--black-light);
-            color: var(--white);
+            color: #B9CBCA;
+            background-color: #385755;
         }
     }
 }

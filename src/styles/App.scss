@@ -35,6 +35,20 @@
         &.eleven { width:  91.66666666666667%; }
         &.twelve { width:  100%; }
     }
+    @media (max-width: 950px) {
+        .flex-item {
+            &.three {
+                width: 33.33333%;
+            }
+        }
+    }
+    @media (max-width: 600px) {
+        .flex-item {
+            &.six {
+                width: 100%;
+            }
+        }
+    }
 }
 
 nav {
