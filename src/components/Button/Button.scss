@@ -22,4 +22,7 @@ button.button {
             width: 18px;
         }
     }
+    @media (max-width: 600px) {
+        font-size: 1.0rem !important;
+    }
 }

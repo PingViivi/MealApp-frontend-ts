@@ -20,6 +20,19 @@ header.nav-container {
             }
         }
     }
+    .profile {
+        // background-color: var(--blue-light);
+        color: var(--yellow-dark);
+        background-image: url(../../images/bubble.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     @media (max-width: 950px) {
         nav.primary-nav {
             z-index: 10;

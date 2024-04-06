@@ -6,6 +6,7 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ManageSearchRoundedIcon from '@mui/icons-material/ManageSearchRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import EditCalendarRoundedIcon from '@mui/icons-material/EditCalendarRounded';
+import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 
 const Navigation: React.FC = () => {
   const location = useLocation().pathname
@@ -29,7 +30,6 @@ const Navigation: React.FC = () => {
       </Link>
       <nav className='primary-nav flex-item six'>
         <ul>
-
           <li className={currentPage('/') ? 'current' : ''}>
             <Link to="/">
               <span className="icon">
@@ -67,6 +67,9 @@ const Navigation: React.FC = () => {
           </li>
         </ul>
       </nav>
+      <Link className='profile' to="/profile">
+        <PersonRoundedIcon/>
+      </Link>
     </header>
   );
 

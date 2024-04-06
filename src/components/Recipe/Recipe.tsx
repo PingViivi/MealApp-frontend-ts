@@ -65,6 +65,12 @@ const Recipe: React.FC<{ recipe: IRecipe }> = ({ recipe }) => {
             setSelectedRows([...selectedRows, index]);
         }
     };
+
+    const [selectedTab, setSelectedTab] = useState<string>('ingredients'); // Default selected tab
+
+    const handleTabClick = (tab: string) => {
+        setSelectedTab(tab);
+    };
     
     return (
         <>
@@ -84,9 +90,6 @@ const Recipe: React.FC<{ recipe: IRecipe }> = ({ recipe }) => {
                     <h1>{recipe.name}</h1>
                     <div className="details">
                         <span>
-                            {recipe.duration ? <AccessTimeFilledRoundedIcon/> + recipe.duration :''}
-                        </span>
-                        <span>
                             {recipe.recipeYield ? <RestaurantRoundedIcon/> : ''}
                             {recipe.recipeYield}
                         </span>
@@ -97,6 +100,9 @@ const Recipe: React.FC<{ recipe: IRecipe }> = ({ recipe }) => {
                         <span>
                             <PublicRoundedIcon/>
                             {recipe.area}
+                        </span>
+                        <span>
+                            {recipe.duration ? <AccessTimeFilledRoundedIcon/> + recipe.duration :''}
                         </span>
                     </div>
                     <div className="desc">
@@ -111,19 +117,28 @@ const Recipe: React.FC<{ recipe: IRecipe }> = ({ recipe }) => {
                 </div>
             </div>
             <div className="flex guide">
-                <div className="flex-item four ingredients">
+                <div 
+                    onClick={() => handleTabClick('ingredients')}
+                    className={`flex-item four ingredients title ${selectedTab === 'ingredients' ? 'selected' : ''} ` }
+                    >
                     <h2>Ingredients</h2>
-                    
+                </div>
+                <div
+                    onClick={() => handleTabClick('instructions')} 
+                    className={`flex-item eight instructions title ${selectedTab === 'instructions' ? 'selected' : ''} ` }
+                    >
+                    <h2>Instructions</h2>
+                </div>
+                <div 
+                    className={`flex-item four ingredients ${selectedTab === 'ingredients' ? 'selected' : ''} ` }
+                >
                     {recipe.recipeIngredient?.map((ingredient) => (
                         <div className='ingredient'>{ingredient}</div>
-                    )) }
-  
+                    ))}
                 </div>
-                <div className="flex-item eight instructions">
-                    <h2>Instructions</h2>
-                    {/* {recipe.recipeInstructions?.map((instruction) => (
-                        <div>{instruction}</div>
-                    )) } */}
+                <div 
+                className={`flex-item eight instructions ${selectedTab === 'instructions' ? 'selected' : ''} ` }
+                >
                     {recipe.recipeInstructions?.map((instruction, i) => (
                         <div 
                             className={`instruction flex ${selectedRows.includes(i) ? 'selected' : ''}`}
@@ -136,7 +151,6 @@ const Recipe: React.FC<{ recipe: IRecipe }> = ({ recipe }) => {
                             </div>
                          </div>
                     )) }
-                    
                 </div>
             </div>
         </section>

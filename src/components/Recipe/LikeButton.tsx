@@ -17,7 +17,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ isLiked, visibility, onClick })
     const icon: JSX.Element = isLiked ? <FavoriteRoundedIcon /> : <FavoriteBorderRoundedIcon />;
 
     return (
-        <button className='like' onClick={onClick}>
+        <button className='button like' onClick={onClick}>
             {buttonText}
             {icon}
         </button>
