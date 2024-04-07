@@ -1,0 +1,16 @@
+label.input {
+    padding-bottom: 15px;
+    color: #385755;
+    input, textarea {
+        width: 100%;
+        padding: 7px 5px;
+        font-family: inherit;
+        border: none;
+        border-radius: 5px;
+        background-color: #DDE2DB;
+        color: #385755;
+    }
+    textarea {
+        resize: vertical;
+    }
+}

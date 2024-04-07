@@ -9,10 +9,16 @@ header.nav-container {
     }
     nav {
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
         ul {
             li {
+                &.current {
+                    background-color: #a4b8b7a4;
+                    border-radius: 5px;
+                }
                 a {
+                    color: #668482;
+                    font-weight: 700;
                     span.icon {
                         display: none;
                     }
@@ -20,18 +26,7 @@ header.nav-container {
             }
         }
     }
-    .profile {
-        color: var(--yellow-dark);
-        background-image: url(../../images/bubble.svg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+
     @media (max-width: 950px) {
         nav.primary-nav {
             z-index: 10;
@@ -52,6 +47,7 @@ header.nav-container {
                 margin-bottom: 10px;
                 li {
                     padding: 0;
+                    background-color: transparent;
                     a {
                         display: flex;
                         align-items: center;

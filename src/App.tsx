@@ -10,6 +10,7 @@ import MealPlan from './views/MealPlan';
 import Profile from './views/Profile';
 import Login from './views/Login';
 import RecipePage from './views/RecipePage';
+import Signup from './views/Signup';
 
 const App: React.FC = () => {
   return (
@@ -27,9 +28,10 @@ const App: React.FC = () => {
                 <Route path="/myrecipes"  Component={MyRecipes} />
                 <Route path="/mealplan"  Component={MealPlan} />
 
-                {/* Other routes */}
+                {/* User routes */}
                 <Route path="/profile"  Component={Profile} />
                 <Route path="/login"  Component={Login} />
+                <Route path="/signup"  Component={Signup} />
               </Routes>
         </Router>
       </div>
