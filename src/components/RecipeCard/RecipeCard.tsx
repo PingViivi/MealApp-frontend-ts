@@ -15,8 +15,6 @@ interface RecipeCardProps {
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = ({ like, meal, category, isLiked, heart = true, path }) => {
-  const path1 = `/categories/${category}`
-  const path2 = `/myrecipes/`
   
   return (
     <>
