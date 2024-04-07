@@ -1,9 +1,9 @@
 .RecipeForm {
     align-items: flex-start;
-    
     label {
         width: 100%;
         padding-bottom: 15px;
+        color: var(--green-light);
         &:nth-child(odd) {
             padding-right: 10px;
         }
@@ -12,17 +12,37 @@
         }
         input, textarea {
             width: 100%;
-            padding: 5px;
+            padding: 7px 5px;
             font-family: inherit;
+            border: none;
+            border-radius: 5px;
+            background-color: #668483;
+            color: #DDE2DB;
+        }
+        textarea {
+            resize: vertical;
         }
     }
     .buttons {
         justify-content: flex-end;
         button {
             margin-top: 10px;
+            color: #668483;
+            border-color: #668483;
+            &[type=submit] {
+                color: #005053;
+                background-color: #A4B8B7;
+                border-color: #A4B8B7;
+            }
             &:first-child {
                 margin-right: 10px;
             }
+        }
+    }
+    @media (max-width: 600px) {
+        label {
+            padding: 0 0 15px 0 !important;
+            font-size: 0.9rem;
         }
     }
 }
