@@ -8,7 +8,7 @@ const getApiRecipe = async (meal: string) => {
         const baseUrl = 'http://localhost:3001/api/meals/' + meal;
         const response = await axios.get(baseUrl);
         const apiRecipeData = response.data.recipe[0];
-        return formatRecipe(apiRecipeData);
+        return formatApiRecipe(apiRecipeData);
     } catch (error) {
         throw new Error('Failed to fetch API recipe');
     }
@@ -18,13 +18,14 @@ const getDbRecipe = async (meal: string) => {
     try {
         const baseUrl = 'http://localhost:3001/db/myrecipes/' + meal;
         const response = await axios.get(baseUrl);
-        return response.data;
+        // return response.data;
+        return formatDbRecipe(response.data);
     } catch (error) {
         throw new Error('Failed to fetch database recipe');
     }
 };
 
-const formatRecipe = (apiRecipeData: any) => {
+const formatApiRecipe = (apiRecipeData: any) => {
     const instructionsArray = apiRecipeData.strInstructions.split(/\n|\./g).filter((instruction:string) => instruction.trim() !== '');
 
     const recipe = {
@@ -54,6 +55,30 @@ const formatRecipe = (apiRecipeData: any) => {
             break; // Stop looping if there are no more ingredients
         }
     }
+
+    return recipe;
+};
+
+const formatDbRecipe = (databaseRecipe: any) => {
+    const instructionsArray = databaseRecipe.recipeinstructions.map((instruction:string) => instruction.trim()).filter((instruction:string) => instruction !== '');
+    const recipeIngredient = databaseRecipe.recipeingredient.map((ingredient:string) => ingredient.trim());
+
+    const recipe = {
+        "@context": "https://schema.org",
+        "@type": "Recipe",
+        "id": databaseRecipe.id,
+        "name": databaseRecipe.name,
+        "category": databaseRecipe.category,
+        "area": databaseRecipe.area,
+        "author": "Unknown",
+        "datePublished": new Date().toISOString(),
+        "description": databaseRecipe.description || "",
+        "image": databaseRecipe.image,
+        "recipeIngredient": recipeIngredient,
+        "liked": false,
+        "recipeInstructions": instructionsArray,
+        "recipeYield": databaseRecipe.recipeyield || "1 serving"
+    };
 
     return recipe;
 };
